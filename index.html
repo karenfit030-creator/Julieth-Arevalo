@@ -87,6 +87,8 @@ body{background:var(--black);color:var(--text);font-family:"Poppins",sans-serif;
 .cardio-banner p{font-size:.85rem;color:var(--muted);line-height:1.5}
 .cardio-banner strong{color:var(--pink)}
 /* WA */
+.nutr-day{display:none}
+.nutr-day.active{display:block}
 .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);z-index:999;text-decoration:none;transition:transform .2s}
 .wa-btn:hover{transform:scale(1.1)}
 .wa-btn svg{width:30px;height:30px;fill:#fff}
@@ -154,155 +156,98 @@ footer span{color:var(--pink)}
   </div>
 
   <div class="macros-grid">
-    <div class="macro-card">
-      <div class="macro-num">120<span style="font-size:1rem">g</span></div>
-      <div class="macro-unit">480 kcal</div>
-      <div class="macro-name">🥩 Proteína</div>
-    </div>
-    <div class="macro-card">
-      <div class="macro-num">250<span style="font-size:1rem">g</span></div>
-      <div class="macro-unit">1000 kcal</div>
-      <div class="macro-name">🍚 Carbos</div>
-    </div>
-    <div class="macro-card">
-      <div class="macro-num">68<span style="font-size:1rem">g</span></div>
-      <div class="macro-unit">620 kcal</div>
-      <div class="macro-name">🥑 Grasas</div>
-    </div>
+    <div class="macro-card"><div class="macro-num">120<span style="font-size:1rem">g</span></div><div class="macro-unit">480 kcal</div><div class="macro-name">🥩 Proteína</div></div>
+    <div class="macro-card"><div class="macro-num">250<span style="font-size:1rem">g</span></div><div class="macro-unit">1000 kcal</div><div class="macro-name">🍚 Carbos</div></div>
+    <div class="macro-card"><div class="macro-num">68<span style="font-size:1rem">g</span></div><div class="macro-unit">620 kcal</div><div class="macro-name">🥑 Grasas</div></div>
   </div>
 
-  <!-- COMIDA 1 -->
-  <div class="meal-card">
-    <div class="meal-header" onclick="toggleMeal(this)">
-      <div>
-        <div class="meal-title">🌅 Desayuno</div>
-        <div class="meal-time">7:00 – 8:00 AM · ~530 kcal</div>
-      </div>
-      <span style="color:var(--pink);font-size:1.2rem">﹢</span>
-    </div>
-    <div class="meal-body">
-      <div class="food-item"><span class="food-name">Avena en hojuelas</span><span class="food-qty">80g</span></div>
-      <div class="food-item"><span class="food-name">Leche entera o de avena</span><span class="food-qty">200ml</span></div>
-      <div class="food-item"><span class="food-name">Huevos enteros revueltos</span><span class="food-qty">2 unidades</span></div>
-      <div class="food-item"><span class="food-name">Banano maduro</span><span class="food-qty">1 unidad</span></div>
-      <div class="food-item"><span class="food-name">Maní tostado sin sal</span><span class="food-qty">20g</span></div>
-      <div class="meal-kcal">~530 kcal · P 28g · C 70g · G 18g</div>
-      <div class="tip-card"><strong>💡 Tip:</strong> Puedes agregar canela y miel a la avena. Si no tienes tiempo, prepara la avena la noche anterior.</div>
-    </div>
+  <!-- Días nav nutrición -->
+  <div class="days-nav" id="nutr-nav">
+    <button class="day-btn active" onclick="switchNutr('nlunes',this)">Lunes</button>
+    <button class="day-btn" onclick="switchNutr('nmartes',this)">Martes</button>
+    <button class="day-btn" onclick="switchNutr('nmiercoles',this)">Miércoles</button>
+    <button class="day-btn" onclick="switchNutr('njueves',this)">Jueves</button>
+    <button class="day-btn" onclick="switchNutr('nviernes',this)">Viernes</button>
+    <button class="day-btn" onclick="switchNutr('nsabado',this)">Sábado</button>
+    <button class="day-btn" onclick="switchNutr('ndomingo',this)">Domingo</button>
   </div>
 
-  <!-- SNACK 1 -->
-  <div class="meal-card">
-    <div class="meal-header" onclick="toggleMeal(this)">
-      <div>
-        <div class="meal-title">🍎 Media Mañana</div>
-        <div class="meal-time">10:00 – 10:30 AM · ~300 kcal</div>
-      </div>
-      <span style="color:var(--pink);font-size:1.2rem">﹢</span>
-    </div>
-    <div class="meal-body">
-      <div class="food-item"><span class="food-name">Yogur griego natural</span><span class="food-qty">200g</span></div>
-      <div class="food-item"><span class="food-name">Granola sin azúcar</span><span class="food-qty">30g</span></div>
-      <div class="food-item"><span class="food-name">Fresas o mango</span><span class="food-qty">100g</span></div>
-      <div class="meal-kcal">~300 kcal · P 20g · C 38g · G 6g</div>
-      <div class="tip-card"><strong>💡 Tip:</strong> El yogur griego es alto en proteína. Elige uno sin sabor para evitar azúcares añadidos.</div>
-    </div>
+  <!-- ─── LUNES ─── -->
+  <div class="nutr-day active" id="nlunes">
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌅 Desayuno</div><div class="meal-time">7:00 AM · ~530 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Avena en hojuelas</span><span class="food-qty">80g</span></div><div class="food-item"><span class="food-name">Leche entera</span><span class="food-qty">200ml</span></div><div class="food-item"><span class="food-name">Huevos revueltos</span><span class="food-qty">2 unidades</span></div><div class="food-item"><span class="food-name">Banano</span><span class="food-qty">1 unidad</span></div><div class="food-item"><span class="food-name">Maní tostado</span><span class="food-qty">20g</span></div><div class="meal-kcal">~530 kcal · P 28g · C 70g · G 18g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍎 Media Mañana</div><div class="meal-time">10:00 AM · ~280 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Yogur griego natural</span><span class="food-qty">200g</span></div><div class="food-item"><span class="food-name">Granola</span><span class="food-qty">30g</span></div><div class="food-item"><span class="food-name">Fresas</span><span class="food-qty">100g</span></div><div class="meal-kcal">~280 kcal · P 20g · C 35g · G 5g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍽️ Almuerzo</div><div class="meal-time">12:30 PM · ~600 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz blanco</span><span class="food-qty">1 taza cocida</span></div><div class="food-item"><span class="food-name">Pechuga de pollo a la plancha</span><span class="food-qty">180g</span></div><div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">½ unidad</span></div><div class="food-item"><span class="food-name">Lentejas</span><span class="food-qty">½ taza</span></div><div class="food-item"><span class="food-name">Ensalada verde</span><span class="food-qty">libre</span></div><div class="meal-kcal">~600 kcal · P 42g · C 65g · G 16g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">⚡ Pre-Entreno</div><div class="meal-time">1h antes · ~250 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Pan integral</span><span class="food-qty">2 tajadas</span></div><div class="food-item"><span class="food-name">Huevo cocido</span><span class="food-qty">1 unidad</span></div><div class="food-item"><span class="food-name">Banano pequeño</span><span class="food-qty">1 unidad</span></div><div class="meal-kcal">~250 kcal · P 14g · C 38g · G 5g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">💪 Post-Entreno</div><div class="meal-time">30 min después · ~220 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Batido de proteína</span><span class="food-qty">1 scoop</span></div><div class="food-item"><span class="food-name">Leche o agua</span><span class="food-qty">300ml</span></div><div class="meal-kcal">~220 kcal · P 25g · C 18g · G 3g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌙 Cena</div><div class="meal-time">7:30 PM · ~420 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Papa cocida</span><span class="food-qty">200g</span></div><div class="food-item"><span class="food-name">Atún en agua</span><span class="food-qty">1 lata 140g</span></div><div class="food-item"><span class="food-name">Brócoli al vapor</span><span class="food-qty">150g</span></div><div class="food-item"><span class="food-name">Aceite de oliva</span><span class="food-qty">1 cdta</span></div><div class="meal-kcal">~420 kcal · P 36g · C 42g · G 10g</div></div></div>
   </div>
 
-  <!-- ALMUERZO -->
-  <div class="meal-card">
-    <div class="meal-header" onclick="toggleMeal(this)">
-      <div>
-        <div class="meal-title">🍽️ Almuerzo</div>
-        <div class="meal-time">12:30 – 1:30 PM · ~600 kcal</div>
-      </div>
-      <span style="color:var(--pink);font-size:1.2rem">﹢</span>
-    </div>
-    <div class="meal-body">
-      <div class="food-item"><span class="food-name">Arroz blanco cocido</span><span class="food-qty">1 taza (200g)</span></div>
-      <div class="food-item"><span class="food-name">Pechuga de pollo a la plancha</span><span class="food-qty">180g</span></div>
-      <div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">½ unidad</span></div>
-      <div class="food-item"><span class="food-name">Ensalada (lechuga, tomate, pepino)</span><span class="food-qty">A gusto</span></div>
-      <div class="food-item"><span class="food-name">Lentejas o frijoles</span><span class="food-qty">½ taza cocida</span></div>
-      <div class="meal-kcal">~600 kcal · P 40g · C 65g · G 16g</div>
-      <div class="tip-card"><strong>💡 Tip:</strong> Puedes alternar el pollo con atún, carne molida magra o salmón. El aguacate aporta grasas buenas esenciales para las hormonas.</div>
-    </div>
+  <!-- ─── MARTES ─── -->
+  <div class="nutr-day" id="nmartes">
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌅 Desayuno</div><div class="meal-time">7:00 AM · ~520 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Tostadas de pan integral</span><span class="food-qty">3 tajadas</span></div><div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">½ unidad</span></div><div class="food-item"><span class="food-name">Huevos estrellados</span><span class="food-qty">2 unidades</span></div><div class="food-item"><span class="food-name">Jugo de naranja natural</span><span class="food-qty">200ml</span></div><div class="meal-kcal">~520 kcal · P 26g · C 58g · G 20g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍎 Media Mañana</div><div class="meal-time">10:00 AM · ~270 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Manzana</span><span class="food-qty">1 unidad</span></div><div class="food-item"><span class="food-name">Maní con pasas</span><span class="food-qty">40g</span></div><div class="food-item"><span class="food-name">Leche</span><span class="food-qty">200ml</span></div><div class="meal-kcal">~270 kcal · P 10g · C 38g · G 10g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍽️ Almuerzo</div><div class="meal-time">12:30 PM · ~610 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Pasta integral cocida</span><span class="food-qty">180g</span></div><div class="food-item"><span class="food-name">Carne molida magra</span><span class="food-qty">150g</span></div><div class="food-item"><span class="food-name">Salsa de tomate natural</span><span class="food-qty">100g</span></div><div class="food-item"><span class="food-name">Queso bajo en grasa</span><span class="food-qty">30g</span></div><div class="food-item"><span class="food-name">Ensalada</span><span class="food-qty">libre</span></div><div class="meal-kcal">~610 kcal · P 44g · C 68g · G 14g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">⚡ Pre-Entreno</div><div class="meal-time">1h antes · ~240 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz con pollo (pequeña porción)</span><span class="food-qty">150g</span></div><div class="food-item"><span class="food-name">Banano</span><span class="food-qty">1 unidad</span></div><div class="meal-kcal">~240 kcal · P 18g · C 36g · G 3g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">💪 Post-Entreno</div><div class="meal-time">30 min después · ~220 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Batido de proteína</span><span class="food-qty">1 scoop</span></div><div class="food-item"><span class="food-name">Leche entera</span><span class="food-qty">250ml</span></div><div class="meal-kcal">~220 kcal · P 25g · C 18g · G 4g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌙 Cena</div><div class="meal-time">7:30 PM · ~430 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz integral</span><span class="food-qty">½ taza cocida</span></div><div class="food-item"><span class="food-name">Pechuga de pollo al horno</span><span class="food-qty">180g</span></div><div class="food-item"><span class="food-name">Espinaca salteada</span><span class="food-qty">100g</span></div><div class="food-item"><span class="food-name">Aceite de oliva</span><span class="food-qty">1 cdta</span></div><div class="meal-kcal">~430 kcal · P 40g · C 40g · G 10g</div></div></div>
   </div>
 
-  <!-- PRE-ENTRENO -->
-  <div class="meal-card">
-    <div class="meal-header" onclick="toggleMeal(this)">
-      <div>
-        <div class="meal-title">⚡ Pre-Entreno</div>
-        <div class="meal-time">1 hora antes de entrenar · ~250 kcal</div>
-      </div>
-      <span style="color:var(--pink);font-size:1.2rem">﹢</span>
-    </div>
-    <div class="meal-body">
-      <div class="food-item"><span class="food-name">Pan integral</span><span class="food-qty">2 tajadas</span></div>
-      <div class="food-item"><span class="food-name">Huevo cocido</span><span class="food-qty">1 unidad</span></div>
-      <div class="food-item"><span class="food-name">Banano pequeño</span><span class="food-qty">1 unidad</span></div>
-      <div class="meal-kcal">~250 kcal · P 14g · C 38g · G 5g</div>
-      <div class="tip-card"><strong>💡 Tip:</strong> Este snack te da energía rápida para el entreno. No entrenes con el estómago vacío ni demasiado llena.</div>
-    </div>
+  <!-- ─── MIÉRCOLES ─── -->
+  <div class="nutr-day" id="nmiercoles">
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌅 Desayuno</div><div class="meal-time">7:00 AM · ~510 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arepa de maíz</span><span class="food-qty">2 unidades</span></div><div class="food-item"><span class="food-name">Huevos pericos con tomate</span><span class="food-qty">2 unidades</span></div><div class="food-item"><span class="food-name">Queso blanco</span><span class="food-qty">40g</span></div><div class="food-item"><span class="food-name">Jugo de mora natural</span><span class="food-qty">200ml</span></div><div class="meal-kcal">~510 kcal · P 30g · C 55g · G 18g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍎 Media Mañana</div><div class="meal-time">10:00 AM · ~290 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Yogur griego</span><span class="food-qty">150g</span></div><div class="food-item"><span class="food-name">Banano</span><span class="food-qty">1 unidad</span></div><div class="food-item"><span class="food-name">Almendras</span><span class="food-qty">20g</span></div><div class="meal-kcal">~290 kcal · P 18g · C 38g · G 8g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍽️ Almuerzo</div><div class="meal-time">12:30 PM · ~620 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz blanco</span><span class="food-qty">1 taza cocida</span></div><div class="food-item"><span class="food-name">Salmón al horno</span><span class="food-qty">160g</span></div><div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">½ unidad</span></div><div class="food-item"><span class="food-name">Frijoles</span><span class="food-qty">½ taza</span></div><div class="food-item"><span class="food-name">Ensalada</span><span class="food-qty">libre</span></div><div class="meal-kcal">~620 kcal · P 44g · C 62g · G 18g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">⚡ Pre-Entreno</div><div class="meal-time">1h antes · ~240 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Avena con leche</span><span class="food-qty">60g avena + 200ml leche</span></div><div class="food-item"><span class="food-name">Miel</span><span class="food-qty">1 cdta</span></div><div class="meal-kcal">~240 kcal · P 12g · C 42g · G 4g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">💪 Post-Entreno</div><div class="meal-time">30 min después · ~200 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Batido de proteína</span><span class="food-qty">1 scoop</span></div><div class="food-item"><span class="food-name">Agua</span><span class="food-qty">300ml</span></div><div class="food-item"><span class="food-name">Banano</span><span class="food-qty">½ unidad</span></div><div class="meal-kcal">~200 kcal · P 24g · C 20g · G 2g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌙 Cena</div><div class="meal-time">7:30 PM · ~440 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Camote asado</span><span class="food-qty">200g</span></div><div class="food-item"><span class="food-name">Claras de huevo revueltas</span><span class="food-qty">4 claras</span></div><div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">¼ unidad</span></div><div class="food-item"><span class="food-name">Verduras salteadas</span><span class="food-qty">150g</span></div><div class="meal-kcal">~440 kcal · P 30g · C 48g · G 12g</div></div></div>
   </div>
 
-  <!-- POST-ENTRENO -->
-  <div class="meal-card">
-    <div class="meal-header" onclick="toggleMeal(this)">
-      <div>
-        <div class="meal-title">💪 Post-Entreno</div>
-        <div class="meal-time">Máximo 30–45 min después · ~220 kcal</div>
-      </div>
-      <span style="color:var(--pink);font-size:1.2rem">﹢</span>
-    </div>
-    <div class="meal-body">
-      <div class="food-item"><span class="food-name">Batido de proteína en agua o leche</span><span class="food-qty">1 scoop (30g)</span></div>
-      <div class="food-item"><span class="food-name">Banano (opcional)</span><span class="food-qty">½ unidad</span></div>
-      <div class="meal-kcal">~220 kcal · P 25g · C 22g · G 3g</div>
-      <div class="tip-card"><strong>💡 Tip:</strong> Si no tienes proteína en polvo, puedes tomar un vaso de leche con 2 claras de huevo revueltas o un yogur griego.</div>
-    </div>
+  <!-- ─── JUEVES ─── -->
+  <div class="nutr-day" id="njueves">
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌅 Desayuno</div><div class="meal-time">7:00 AM · ~540 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Pancakes de avena y banano</span><span class="food-qty">3 unidades</span></div><div class="food-item"><span class="food-name">Miel de abeja</span><span class="food-qty">1 cdta</span></div><div class="food-item"><span class="food-name">Huevos cocidos</span><span class="food-qty">2 unidades</span></div><div class="food-item"><span class="food-name">Leche</span><span class="food-qty">200ml</span></div><div class="meal-kcal">~540 kcal · P 30g · C 72g · G 14g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍎 Media Mañana</div><div class="meal-time">10:00 AM · ~260 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Batido de frutas con leche</span><span class="food-qty">300ml</span></div><div class="food-item"><span class="food-name">Galletas integrales</span><span class="food-qty">4 unidades</span></div><div class="meal-kcal">~260 kcal · P 10g · C 42g · G 5g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍽️ Almuerzo</div><div class="meal-time">12:30 PM · ~600 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz blanco</span><span class="food-qty">1 taza cocida</span></div><div class="food-item"><span class="food-name">Filete de res magro</span><span class="food-qty">160g</span></div><div class="food-item"><span class="food-name">Papa cocida</span><span class="food-qty">150g</span></div><div class="food-item"><span class="food-name">Ensalada con aceite de oliva</span><span class="food-qty">libre</span></div><div class="meal-kcal">~600 kcal · P 45g · C 65g · G 14g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">⚡ Pre-Entreno</div><div class="meal-time">1h antes · ~250 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Sándwich integral de atún</span><span class="food-qty">1 unidad</span></div><div class="food-item"><span class="food-name">Manzana</span><span class="food-qty">1 unidad</span></div><div class="meal-kcal">~250 kcal · P 20g · C 32g · G 5g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">💪 Post-Entreno</div><div class="meal-time">30 min después · ~220 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Batido de proteína</span><span class="food-qty">1 scoop</span></div><div class="food-item"><span class="food-name">Leche entera</span><span class="food-qty">250ml</span></div><div class="meal-kcal">~220 kcal · P 25g · C 18g · G 4g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌙 Cena</div><div class="meal-time">7:30 PM · ~430 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz integral</span><span class="food-qty">½ taza cocida</span></div><div class="food-item"><span class="food-name">Pechuga de pollo</span><span class="food-qty">180g</span></div><div class="food-item"><span class="food-name">Zucchini salteado</span><span class="food-qty">150g</span></div><div class="food-item"><span class="food-name">Aceite de oliva</span><span class="food-qty">1 cdta</span></div><div class="meal-kcal">~430 kcal · P 40g · C 42g · G 10g</div></div></div>
   </div>
 
-  <!-- CENA -->
-  <div class="meal-card">
-    <div class="meal-header" onclick="toggleMeal(this)">
-      <div>
-        <div class="meal-title">🌙 Cena</div>
-        <div class="meal-time">7:00 – 8:00 PM · ~400 kcal</div>
-      </div>
-      <span style="color:var(--pink);font-size:1.2rem">﹢</span>
-    </div>
-    <div class="meal-body">
-      <div class="food-item"><span class="food-name">Papa o camote cocido</span><span class="food-qty">200g</span></div>
-      <div class="food-item"><span class="food-name">Atún en agua</span><span class="food-qty">1 lata (140g)</span></div>
-      <div class="food-item"><span class="food-name">Brócoli o espinaca al vapor</span><span class="food-qty">150g</span></div>
-      <div class="food-item"><span class="food-name">Aceite de oliva</span><span class="food-qty">1 cucharada</span></div>
-      <div class="meal-kcal">~400 kcal · P 35g · C 42g · G 10g</div>
-      <div class="tip-card"><strong>💡 Tip:</strong> La cena no debe ser muy pesada. Prioriza proteína y verduras. Puedes cambiar el atún por pollo, huevos o queso cottage.</div>
-    </div>
+  <!-- ─── VIERNES ─── -->
+  <div class="nutr-day" id="nviernes">
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌅 Desayuno</div><div class="meal-time">7:00 AM · ~520 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Avena con leche y frutas</span><span class="food-qty">80g avena + 200ml leche</span></div><div class="food-item"><span class="food-name">Mango picado</span><span class="food-qty">100g</span></div><div class="food-item"><span class="food-name">Huevos cocidos</span><span class="food-qty">2 unidades</span></div><div class="food-item"><span class="food-name">Maní</span><span class="food-qty">15g</span></div><div class="meal-kcal">~520 kcal · P 28g · C 68g · G 16g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍎 Media Mañana</div><div class="meal-time">10:00 AM · ~280 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Yogur griego</span><span class="food-qty">200g</span></div><div class="food-item"><span class="food-name">Banano</span><span class="food-qty">1 unidad</span></div><div class="food-item"><span class="food-name">Almendras</span><span class="food-qty">15g</span></div><div class="meal-kcal">~280 kcal · P 20g · C 36g · G 7g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍽️ Almuerzo</div><div class="meal-time">12:30 PM · ~600 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz blanco</span><span class="food-qty">1 taza cocida</span></div><div class="food-item"><span class="food-name">Pollo a la plancha</span><span class="food-qty">180g</span></div><div class="food-item"><span class="food-name">Frijoles negros</span><span class="food-qty">½ taza</span></div><div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">½ unidad</span></div><div class="food-item"><span class="food-name">Ensalada</span><span class="food-qty">libre</span></div><div class="meal-kcal">~600 kcal · P 42g · C 64g · G 16g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">⚡ Pre-Entreno</div><div class="meal-time">1h antes · ~240 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Pan integral con mantequilla de maní</span><span class="food-qty">2 tajadas + 1 cdta</span></div><div class="food-item"><span class="food-name">Banano</span><span class="food-qty">1 unidad</span></div><div class="meal-kcal">~240 kcal · P 12g · C 38g · G 6g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">💪 Post-Entreno</div><div class="meal-time">30 min después · ~220 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Batido de proteína</span><span class="food-qty">1 scoop</span></div><div class="food-item"><span class="food-name">Leche</span><span class="food-qty">250ml</span></div><div class="meal-kcal">~220 kcal · P 25g · C 18g · G 4g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌙 Cena</div><div class="meal-time">7:30 PM · ~440 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Papa al horno</span><span class="food-qty">200g</span></div><div class="food-item"><span class="food-name">Atún en agua</span><span class="food-qty">1 lata 140g</span></div><div class="food-item"><span class="food-name">Espinaca salteada</span><span class="food-qty">100g</span></div><div class="food-item"><span class="food-name">Aceite de oliva</span><span class="food-qty">1 cdta</span></div><div class="meal-kcal">~440 kcal · P 36g · C 44g · G 10g</div></div></div>
+  </div>
+
+  <!-- ─── SÁBADO ─── -->
+  <div class="nutr-day" id="nsabado">
+    <div class="tip-card" style="margin-bottom:16px">🌟 <strong>Sábado — Día de descanso activo.</strong> Calorías un poco más bajas (~1850 kcal). Aprovecha para preparar comidas de la semana.</div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌅 Desayuno</div><div class="meal-time">8:00 AM · ~500 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Tostadas francesas de pan integral</span><span class="food-qty">2 tajadas</span></div><div class="food-item"><span class="food-name">Huevos</span><span class="food-qty">2 unidades</span></div><div class="food-item"><span class="food-name">Frutas mixtas</span><span class="food-qty">150g</span></div><div class="food-item"><span class="food-name">Café con leche</span><span class="food-qty">200ml</span></div><div class="meal-kcal">~500 kcal · P 26g · C 60g · G 16g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍎 Media Mañana</div><div class="meal-time">10:30 AM · ~250 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Fruta de temporada</span><span class="food-qty">200g</span></div><div class="food-item"><span class="food-name">Maní tostado</span><span class="food-qty">25g</span></div><div class="meal-kcal">~250 kcal · P 8g · C 34g · G 10g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍽️ Almuerzo</div><div class="meal-time">1:00 PM · ~580 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz blanco</span><span class="food-qty">1 taza cocida</span></div><div class="food-item"><span class="food-name">Pollo al horno con especias</span><span class="food-qty">180g</span></div><div class="food-item"><span class="food-name">Ensalada grande</span><span class="food-qty">libre</span></div><div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">½ unidad</span></div><div class="meal-kcal">~580 kcal · P 42g · C 58g · G 16g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌙 Cena</div><div class="meal-time">7:00 PM · ~520 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Sopa de lentejas con verduras</span><span class="food-qty">1 plato grande</span></div><div class="food-item"><span class="food-name">Pan integral</span><span class="food-qty">2 tajadas</span></div><div class="food-item"><span class="food-name">Queso blanco</span><span class="food-qty">40g</span></div><div class="meal-kcal">~520 kcal · P 30g · C 72g · G 10g</div></div></div>
+  </div>
+
+  <!-- ─── DOMINGO ─── -->
+  <div class="nutr-day" id="ndomingo">
+    <div class="tip-card" style="margin-bottom:16px">😴 <strong>Domingo — Día de recuperación total.</strong> Calorías similares al sábado. Prioriza el descanso y la hidratación.</div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌅 Desayuno</div><div class="meal-time">9:00 AM · ~550 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Huevos revueltos con vegetales</span><span class="food-qty">3 unidades</span></div><div class="food-item"><span class="food-name">Arepa</span><span class="food-qty">1 grande</span></div><div class="food-item"><span class="food-name">Aguacate</span><span class="food-qty">½ unidad</span></div><div class="food-item"><span class="food-name">Jugo natural</span><span class="food-qty">200ml</span></div><div class="meal-kcal">~550 kcal · P 28g · C 55g · G 22g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍎 Media Mañana</div><div class="meal-time">11:00 AM · ~260 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Yogur griego con miel</span><span class="food-qty">200g</span></div><div class="food-item"><span class="food-name">Granola</span><span class="food-qty">25g</span></div><div class="meal-kcal">~260 kcal · P 18g · C 36g · G 5g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🍽️ Almuerzo</div><div class="meal-time">1:30 PM · ~620 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Arroz con pollo colombiano</span><span class="food-qty">1 plato</span></div><div class="food-item"><span class="food-name">Ensalada de aguacate</span><span class="food-qty">libre</span></div><div class="food-item"><span class="food-name">Tajadas de plátano maduro</span><span class="food-qty">3 unidades</span></div><div class="meal-kcal">~620 kcal · P 38g · C 75g · G 16g</div></div></div>
+    <div class="meal-card"><div class="meal-header" onclick="toggleMeal(this)"><div><div class="meal-title">🌙 Cena</div><div class="meal-time">7:00 PM · ~420 kcal</div></div><span style="color:var(--pink);font-size:1.2rem">﹢</span></div><div class="meal-body"><div class="food-item"><span class="food-name">Crema de verduras</span><span class="food-qty">1 plato</span></div><div class="food-item"><span class="food-name">Atún en agua</span><span class="food-qty">1 lata 140g</span></div><div class="food-item"><span class="food-name">Pan integral</span><span class="food-qty">2 tajadas</span></div><div class="food-item"><span class="food-name">Aceite de oliva</span><span class="food-qty">1 cdta</span></div><div class="meal-kcal">~420 kcal · P 32g · C 50g · G 10g</div></div></div>
   </div>
 
   <!-- REGLAS DE ORO -->
   <div style="margin-top:28px">
     <div class="section-title" style="font-size:1.8rem">📋 REGLAS DE ORO</div>
     <div class="section-line"></div>
-    <div class="info-card">
-      <h3>💧 Hidratación</h3>
-      <p>Toma mínimo <strong>2.5 litros de agua</strong> al día. El agua es esencial para el crecimiento muscular y la recuperación.</p>
-    </div>
-    <div class="info-card">
-      <h3>🕐 Consistencia</h3>
-      <p>Come cada <strong>3–4 horas</strong>. No te saltes comidas. La masa muscular se construye con consistencia, no con perfección.</p>
-    </div>
-    <div class="info-card">
-      <h3>😴 Descanso</h3>
-      <p>Duerme <strong>7–8 horas</strong> diarias. El músculo crece mientras duermes, no mientras entrenas.</p>
-    </div>
-    <div class="info-card">
-      <h3>🚫 Evitar</h3>
-      <p>Reduce al mínimo: ultraprocesados, bebidas azucaradas, alcohol y harinas refinadas. No tienes que ser perfecta, pero el 80% del tiempo sí importa.</p>
-    </div>
+    <div class="info-card"><h3>💧 Hidratación</h3><p>Toma mínimo <strong>2.5 litros de agua</strong> al día.</p></div>
+    <div class="info-card"><h3>🕐 Consistencia</h3><p>Come cada <strong>3–4 horas</strong>. No te saltes comidas.</p></div>
+    <div class="info-card"><h3>😴 Descanso</h3><p>Duerme <strong>7–8 horas</strong> diarias. El músculo crece mientras duermes.</p></div>
+    <div class="info-card"><h3>🚫 Evitar</h3><p>Reduce al mínimo ultraprocesados, bebidas azucaradas y harinas refinadas.</p></div>
   </div>
 </div>
 
@@ -399,6 +344,14 @@ footer span{color:var(--pink)}
 <footer><p>Diseñado con 💗 por <span>KARELIGUZZ.FIT</span> · Plan exclusivo para Julieth Arevalo</p></footer>
 
 <script>
+// Tab navigation
+function switchNutr(id,btn){
+  var nutr = document.getElementById("tab-nutricion");
+  nutr.querySelectorAll(".nutr-day").forEach(function(d){d.classList.remove("active");});
+  nutr.querySelectorAll("#nutr-nav .day-btn").forEach(function(b){b.classList.remove("active");});
+  document.getElementById(id).classList.add("active");
+  btn.classList.add("active");
+}
 function switchTab(id,btn){
   document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
@@ -406,17 +359,22 @@ function switchTab(id,btn){
   btn.classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
 }
+
+// Day navigation — scoped inside rutina tab only
 function switchDay(id,btn){
-  document.querySelectorAll(".day-content").forEach(d=>d.classList.remove("active"));
-  document.querySelectorAll(".day-btn").forEach(b=>b.classList.remove("active"));
+  var rutina = document.getElementById("tab-rutina");
+  rutina.querySelectorAll(".day-content").forEach(function(d){d.classList.remove("active");});
+  rutina.querySelectorAll(".day-btn").forEach(function(b){b.classList.remove("active");});
   document.getElementById("day-"+id).classList.add("active");
   btn.classList.add("active");
 }
+
+// Meal accordion
 function toggleMeal(header){
-  const body=header.nextElementSibling;
-  const icon=header.querySelector("span");
-  if(body.classList.contains("open")){body.classList.remove("open");icon.textContent="﹢"}
-  else{body.classList.add("open");icon.textContent="−"}
+  var body=header.nextElementSibling;
+  var icon=header.querySelector("span");
+  if(body.classList.contains("open")){body.classList.remove("open");icon.textContent="﹢";}
+  else{body.classList.add("open");icon.textContent="−";}
 }
 </script>
 </body>
